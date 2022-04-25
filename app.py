@@ -9,6 +9,7 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 import re
+import emoji
 
 app = Flask(__name__)
 
@@ -58,10 +59,6 @@ def handle_message(event):
                             MessageAction(
                                 label='我長怎樣？',
                                 text='不好'
-                            ),
-                            MessageAction(
-                                label='我有什麼特色？',
-                                text='yes'
                             )
                         ]
                     ),
