@@ -14,7 +14,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('mCPd6yE2BF6p74QHjVd+SDl4tuYnGSBh/iFwQ6NmwSSAJR+NbYNAaLcdeFflEtOqCGOUM6P8aSb1PqTRQE6n2rgytwkc67Ji+KlUE/CswfJ2bO+XWjZcKk84dAfLWolS85oy0OTIV7i7ahMBVm5aTQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('87c5f4d4188a6f2372fcf27786692f93')
 
-line_bot_api.push_message('U7044af8ff4f5da1b940b535199766117',TextSendMessage(text='push message'))
+line_bot_api.push_message('U7044af8ff4f5da1b940b535199766117',TextSendMessage(text='why?'))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -36,10 +36,10 @@ def callback():
     return 'OK'
 
  
-#訊息傳遞區塊
+#message handling
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = text = event.message.text
+    message = event.message.text
     if re.match('about me', message):
         carousel_message = TemplateSendMessage(
             alt_text='Carousel實作',
