@@ -16,8 +16,6 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('mCPd6yE2BF6p74QHjVd+SDl4tuYnGSBh/iFwQ6NmwSSAJR+NbYNAaLcdeFflEtOqCGOUM6P8aSb1PqTRQE6n2rgytwkc67Ji+KlUE/CswfJ2bO+XWjZcKk84dAfLWolS85oy0OTIV7i7ahMBVm5aTQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('87c5f4d4188a6f2372fcf27786692f93')
 
-line_bot_api.push_message('U7044af8ff4f5da1b940b535199766117',TextSendMessage(text='why?'))
-
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -48,16 +46,16 @@ def handle_message(event):
             template = CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url='https://www.projectmailartbooks.com/About_me_2.png',
+                        thumbnail_image_url='https://cdn.iconscout.com/icon/free/png-256/about-me-461762.png',
                         title='關於我',
                         text='我的基本訊息',
                         actions=[
                             MessageAction(
-                                label='我是誰？',
+                                label='我是誰',
                                 text='好'
                             ),
                             MessageAction(
-                                label='我長怎樣？',
+                                label='我長怎樣',
                                 text='不好'
                             )
                         ]
