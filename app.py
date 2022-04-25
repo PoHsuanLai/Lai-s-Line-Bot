@@ -12,11 +12,11 @@ from linebot.models import *
 app = Flask(__name__)
 
 # 必須放上自己的Channel Access Token
-line_bot_api = LineBotApi('你自己的token')
+line_bot_api = LineBotApi('mCPd6yE2BF6p74QHjVd+SDl4tuYnGSBh/iFwQ6NmwSSAJR+NbYNAaLcdeFflEtOqCGOUM6P8aSb1PqTRQE6n2rgytwkc67Ji+KlUE/CswfJ2bO+XWjZcKk84dAfLWolS85oy0OTIV7i7ahMBVm5aTQdB04t89/1O/w1cDnyilFU=')
 # 必須放上自己的Channel Secret
-handler = WebhookHandler('你自己的secret')
+handler = WebhookHandler('87c5f4d4188a6f2372fcf27786692f93')
 
-line_bot_api.push_message('你自己的ID', TextSendMessage(text='你可以開始了'))
+line_bot_api.push_message('U7044af8ff4f5da1b940b535199766117', TextSendMessage(text='你可以開始了'))
 
 
 # 監聽所有來自 /callback 的 Post Request
