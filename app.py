@@ -11,12 +11,10 @@ from linebot.models import *
 
 app = Flask(__name__)
 
-# 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('mCPd6yE2BF6p74QHjVd+SDl4tuYnGSBh/iFwQ6NmwSSAJR+NbYNAaLcdeFflEtOqCGOUM6P8aSb1PqTRQE6n2rgytwkc67Ji+KlUE/CswfJ2bO+XWjZcKk84dAfLWolS85oy0OTIV7i7ahMBVm5aTQdB04t89/1O/w1cDnyilFU=')
-# 必須放上自己的Channel Secret
 handler = WebhookHandler('87c5f4d4188a6f2372fcf27786692f93')
 
-line_bot_api.push_message('U7044af8ff4f5da1b940b535199766117')
+line_bot_api.push_message('U7044af8ff4f5da1b940b535199766117',TextSendMessage(text='push message'))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -42,7 +40,29 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
-    line_bot_api.reply_message(event.reply_token,message)
+    if re.match('about me', message):
+        carousel_message = TemplateSendMessage(
+            alt_text='Carousel實作',
+            template = CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url='https://www.projectmailartbooks.com/About_me_2.png',
+                        title='我的基本訊息',
+                        text='text',
+                        actions=[
+                            MessageAction(
+                                label='我',
+                                text='好'
+                            ),
+                            MessageAction(
+                                label='你',
+                                text='不好'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
 
 #主程式
 import os
