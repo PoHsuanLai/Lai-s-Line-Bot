@@ -40,7 +40,7 @@ def callback():
 #message handling
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = event.message.text
+    message = text = event.message.text
     if re.match('about me', message):
         carousel_message = TemplateSendMessage(
             alt_text='Carousel實作',
@@ -83,6 +83,7 @@ def handle_message(event):
                 ]
             )
         )
+        line_bot_api.reply_message(event.reply_token, carousel_message)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('感謝您的訊息！\n\n想知道詳細訊息請輸入“about me”'))
 
