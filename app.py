@@ -1,4 +1,3 @@
-#載入LineBot所需要的套件
 from flask import Flask, request, abort
 
 from linebot import (
@@ -20,7 +19,7 @@ load_dotenv()
 line_bot_api = LineBotApi(os.getenv("Access_Token"))
 handler = WebhookHandler(os.getenv("Channel_Secret"))
 
-# 監聽所有來自 /callback 的 Post Request
+# Get Callback Requests
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -45,6 +44,7 @@ def callback():
 def handle_message(event):
     message = text = event.message.text
     if re.match('about me', message):
+        #Building Carousel
         carousel_message = TemplateSendMessage(
             alt_text='關於我',
             template = CarouselTemplate(
@@ -83,6 +83,7 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, carousel_message)
+    #Reply special Messages
     elif re.match('你是誰', message):
         line_bot_api.reply_message(event.reply_token, TextSendMessage('我叫賴柏瑄，目前就讀於台大電機系二年級'))
     elif re.match('你的契機', message): 
@@ -90,7 +91,7 @@ def handle_message(event):
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(emoji.emojize('感謝您的訊息！\n\n想知道詳細資訊請輸入\n“about me”\n:smirk::smirk::smirk::smirk::smirk:', language='alias')))
 
-#主程式
+#Main Function
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
