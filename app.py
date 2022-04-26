@@ -99,7 +99,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_message)
     if(default):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(emoji.emojize(message_dict['defaultMessage'])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(message_dict['defaultMessage']))
     f.close()
 
 #Main Function
