@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 import re
 import emoji
 import os
+import json
 
 app = Flask(__name__)
 
@@ -38,11 +39,24 @@ def callback():
 
     return 'OK'
 
- 
+
 #message handling
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+
+    with open('Reply_Message.json', 'r') as f: 
+        message_dict = json.load(fp = f)
     message = text = event.message.text
+    default = true
+
+    #Reply special Messages
+    for index in range(1,len(message_dict)):
+        current_message = message_dict[f'message{index}']
+        if(re.match(current_message['text'])):
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(currentMessage['replyMessage']))
+            default = false
+
+    #Reply Carousel Messages
     if re.match('about me', message):
         #Building Carousel
         carousel_message = TemplateSendMessage(
@@ -83,16 +97,11 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, carousel_message)
-    #Reply special Messages
-    elif re.match('你是誰', message):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage('我叫賴柏瑄，目前就讀於台大電機系二年級'))
-    elif re.match('你的契機', message): 
-        line_bot_api.reply_message(event.reply_token, TextSendMessage('由於我之前碰巧認識了一位也在Line實習的台大學長，又剛好我同時在修網路服務程式的課，也對此深感興趣，因此那時以來便也想到Line實習，藉此更深入瞭解大的科技公司內部是如何完善自己的系統的'))
-    else:
+    if(default):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(emoji.emojize('感謝您的訊息！\n\n想知道詳細資訊請輸入\n“about me”\n:smirk::smirk::smirk::smirk::smirk:', language='alias')))
+    f.close()
 
 #Main Function
-import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
