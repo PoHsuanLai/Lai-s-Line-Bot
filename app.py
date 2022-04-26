@@ -42,7 +42,7 @@ def handle_message(event):
     message = text = event.message.text
     if re.match('about me', message):
         carousel_message = TemplateSendMessage(
-            alt_text='Carousel實作',
+            alt_text='關於我',
             template = CarouselTemplate(
                 columns=[
                     CarouselColumn(
@@ -52,11 +52,11 @@ def handle_message(event):
                         actions=[
                             MessageAction(
                                 label='我是誰',
-                                text='好'
+                                text='我叫賴柏瑄，目前就讀於台大電機系二年級'
                             ),
                             MessageAction(
-                                label='我長怎樣',
-                                text='不好'
+                                label='我的契機',
+                                text='由於我之前碰巧認識了一位也在Line實習的台大學長，又剛好我同時在修網路服務程式的課，也對此深感興趣，因此那時以來便也想到Line實習，藉此更深入瞭解大的科技公司內部是如何完善自己的系統的'
                             )
                         ]
                     ),
