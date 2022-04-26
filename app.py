@@ -88,7 +88,7 @@ def handle_message(event):
     elif re.match('你的契機', message): 
         line_bot_api.reply_message(event.reply_token, TextSendMessage('由於我之前碰巧認識了一位也在Line實習的台大學長，又剛好我同時在修網路服務程式的課，也對此深感興趣，因此那時以來便也想到Line實習，藉此更深入瞭解大的科技公司內部是如何完善自己的系統的'))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(emoji.emojize('感謝您的訊息！\n\n想知道詳細訊息請輸入“about me\n :smirk::smirk:”', language='alias')))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(emoji.emojize('感謝您的訊息！\n\n想知道詳細資訊請輸入“about me"\n:smirk::smirk::smirk::smirk::smirk:', language='alias')))
 
 #主程式
 import os
