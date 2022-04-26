@@ -44,17 +44,18 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
+    #Open messages written in Reply_Messages.json
     with open('Reply_Message.json', 'r') as f: 
         message_dict = json.load(fp = f)
     message = text = event.message.text
-    default = true
+    default = True
 
     #Reply special Messages
     for index in range(1,len(message_dict)):
         current_message = message_dict[f'message{index}']
         if(re.match(current_message['text'])):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(currentMessage['replyMessage']))
-            default = false
+            default = False
 
     #Reply Carousel Messages
     if re.match('about me', message):
