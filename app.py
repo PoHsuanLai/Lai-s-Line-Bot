@@ -84,7 +84,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_message)
     elif re.match('你是誰', message):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage('我叫賴柏瑄，目前就讀於台大電機系二年級')
+        line_bot_api.reply_message(event.reply_token, TextSendMessage('我叫賴柏瑄，目前就讀於台大電機系二年級'))
     elif re.match('你的契機', message): 
         line_bot_api.reply_message(event.reply_token, TextSendMessage('由於我之前碰巧認識了一位也在Line實習的台大學長，又剛好我同時在修網路服務程式的課，也對此深感興趣，因此那時以來便也想到Line實習，藉此更深入瞭解大的科技公司內部是如何完善自己的系統的'))
     else:
