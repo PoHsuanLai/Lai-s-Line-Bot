@@ -50,14 +50,14 @@ def handle_message(event):
     message = text = event.message.text
     default = True
 
-    #Reply special Messages
+    #Reply text Messages
     for index in range(1,len(message_dict)):
         current_message = message_dict[f'message{index}']
-        if(re.match(current_message['text'])):
+        if(re.match(current_message['text']), message):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(currentMessage['replyMessage']))
             default = False
 
-    #Reply Carousel Messages
+    #Reply carousel Messages
     if re.match('about me', message):
         #Building Carousel
         carousel_message = TemplateSendMessage(
@@ -99,7 +99,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_message)
     if(default):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(emoji.emojize('感謝您的訊息！\n\n想知道詳細資訊請輸入\n“about me”\n:smirk::smirk::smirk::smirk::smirk:', language='alias')))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(emoji.emojize(message_dict['defaultMessage'])))
     f.close()
 
 #Main Function
