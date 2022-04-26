@@ -53,7 +53,7 @@ def handle_message(event):
     #Reply text Messages
     for index in range(1,len(message_dict)):
         current_message = message_dict[f'message{index}']
-        if(re.match(current_message['text']), message):
+        if(current_message['text']==message):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(currentMessage['replyMessage']))
             default = False
 
