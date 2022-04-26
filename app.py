@@ -8,13 +8,17 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
+from dotenv import load_dotenv
 import re
 import emoji
+import os
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('mCPd6yE2BF6p74QHjVd+SDl4tuYnGSBh/iFwQ6NmwSSAJR+NbYNAaLcdeFflEtOqCGOUM6P8aSb1PqTRQE6n2rgytwkc67Ji+KlUE/CswfJ2bO+XWjZcKk84dAfLWolS85oy0OTIV7i7ahMBVm5aTQdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('87c5f4d4188a6f2372fcf27786692f93')
+load_dotenv()
+
+line_bot_api = LineBotApi(os.getenv("Access_Token"))
+handler = WebhookHandler(os.getenv("Channel_Secret"))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
