@@ -1,3 +1,3 @@
 Po-Hsuan Lai's Line Bot
 =================================
-I use Python
+賴柏瑄的 Line Bot
