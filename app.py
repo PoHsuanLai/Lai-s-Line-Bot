@@ -54,7 +54,7 @@ def handle_message(event):
     for index in range(1,len(message_dict)):
         current_message = message_dict[f'message{index}']
         if(current_message['text']==message):
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(currentMessage['replyMessage']))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(current_message['replyMessage']))
             default = False
 
     #Reply carousel Messages
